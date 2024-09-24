@@ -14,17 +14,17 @@ export default [
     input: './src/index.ts',
     output: [
       {
-        file: './dist/esm/bundle.js',
+        file: './dist/esm/bundle.mjs',
         format: 'es',
       },
       {
-        file: './dist/cjs/bundle.js',
+        file: './dist/cjs/bundle.cjs',
         format: 'cjs',
       },
     ],
     plugins: [
       commonjs(),
-      nodeResolve(),
+      nodeResolve({ exportConditions: ['node'] }),
       typescript(),
       alias({
         find: '@',
@@ -34,14 +34,14 @@ export default [
     ],
   },
   {
-    input: './src/types/index.d.ts',
+    input: './src/types.d.ts',
     output: [
       {
-        file: './dist/esm/index.d.ts',
+        file: './dist/esm/types.d.ts',
         format: 'es',
       },
       {
-        file: './dist/cjs/index.d.ts',
+        file: './dist/cjs/types.d.ts',
         format: 'cjs',
       },
     ],
